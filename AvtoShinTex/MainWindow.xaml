@@ -1,0 +1,47 @@
+﻿<Window x:Class="AvtoShinTex.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AvtoShinTex"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Расчет комиссионных" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" FontSize="22" FontWeight="Bold"/>
+        <Label Content="Введите/выберите фамилию продавца:" Grid.Row="1" Grid.Column="0" Margin="25,5,0,0"/>
+        <ComboBox Name="EmployeeComboBox" Grid.Row="1" Grid.Column="1" Margin="5,10,25,5" DisplayMemberPath="Name" SelectedValuePath="Name" SelectionChanged="EmployeeComboBox_SelectionChanged"/>
+
+        <Label Content="Введите дату приема продавца на работу:" Grid.Row="2" Grid.Column="0" Margin="25,5,0,0"/>
+        <DatePicker Name="HireDatePicker" Grid.Row="2" Grid.Column="1" Margin="5,10,25,5"/>
+
+        <Label Content="Введите среднюю дневную выручку продавца:" Grid.Row="3" Grid.Column="0" Margin="25,5,0,0"/>
+        <TextBox Name="DailyRevenueTextBox" Grid.Row="3" Grid.Column="1" Margin="5,10,25,5"/>
+
+        <Button Content="Рассчитать комиссионные" Grid.Row="4" Grid.Column="0" Margin="269,10,281,10" Click="CalculateCommission_Click" Grid.ColumnSpan="2"/>
+        
+        
+
+        <DataGrid Name="CommissionDataGrid" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="25,10,25,10" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ФИО продавца" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Размер комиссионного вознаграждения, руб." Binding="{Binding Commission, StringFormat=F2}" Width="*"/>
+                <DataGridTextColumn Header="Размер дневной выручки, руб." Binding="{Binding DailyRevenue, StringFormat=F2}" Width="*"/>
+                <DataGridTextColumn Header="Стаж работы в организации, лет." Binding="{Binding YearsOfService}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
